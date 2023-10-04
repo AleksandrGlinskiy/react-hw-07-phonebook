@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import css from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+// import { addContact } from 'redux/contactsSlice';
 
 export function ContactForm() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ export function ContactForm() {
       return alert(`This phone number is already in contacts.`);
     }
 
-    dispatch(addContact(contact));
+    // dispatch(addContact(contact));
 
     reset();
   };
