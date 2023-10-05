@@ -36,13 +36,13 @@ export function ContactForm() {
     e.preventDefault();
 
     const findName = contacts.find(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
+      contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
     );
 
     if (findName) {
       return alert(`${name} is already in contacts.`);
     }
-    const findNumber = contacts.find(contact => contact.phone === phone);
+    const findNumber = contacts.find(contact => contact.phone.trim() === phone.trim());
     if (findNumber) {
       return alert(`This phone number is already in contacts.`);
     }
