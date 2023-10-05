@@ -23,7 +23,7 @@ export const ContactList = () => {
 
   return (
     <ul>
-      {visibleContacts.map(({ id, name, phone }) => (
+      {visibleContacts && visibleContacts.map(({ id, name, phone }) => (
         <li className={css.item} key={id}>
           <span className={css.nameNumber}>{name}: </span>
           <span className={css.nameNumber}>{phone}</span>
