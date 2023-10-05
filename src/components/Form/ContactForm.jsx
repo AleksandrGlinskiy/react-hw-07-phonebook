@@ -1,17 +1,16 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import css from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../../redux/selectors';
 import { addContact } from 'redux/operations';
 
-
 export function ContactForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -20,8 +19,8 @@ export function ContactForm() {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
       default:
         return;
@@ -32,7 +31,7 @@ export function ContactForm() {
     const contact = {
       id: nanoid(),
       name,
-      number,
+      phone,
     };
     e.preventDefault();
 
@@ -43,7 +42,7 @@ export function ContactForm() {
     if (findName) {
       return alert(`${name} is already in contacts.`);
     }
-    const findNumber = contacts.find(contact => contact.number === number);
+    const findNumber = contacts.find(contact => contact.phone === phone);
     if (findNumber) {
       return alert(`This phone number is already in contacts.`);
     }
@@ -53,11 +52,9 @@ export function ContactForm() {
     reset();
   };
 
-
-
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -80,11 +77,11 @@ export function ContactForm() {
         <input
           className={css.input}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
+          value={phone}
           onChange={handleChange}
         />
       </label>
@@ -94,4 +91,3 @@ export function ContactForm() {
     </form>
   );
 }
-
